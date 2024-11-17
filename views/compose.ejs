@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&family=Reenie+Beanie&family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Compose Blog</title>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="#">
+                <img src="ninlg.svg" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-items">
+            <div><a href="/">Home</a></div>
+            <div><a href="/compose">Write</a></div>
+            <div><a href="#blogs">Blogs</a></div>
+            <div><a href="https://divyanshmalani.com" target="_blank">Portfolio</a></div>
+        </div>
+    </div>
+
+    <h1 id="compose-tagline">Unleash Your Creativity!</h1>
+    <section id="compose">
+        <div class="blog-post">
+            <form action="/post-blog" method="POST">
+                <input 
+                    type="text" 
+                    name="title" 
+                    placeholder="Insert the Title..." 
+                    required 
+                    class="blog-title" 
+                />
+                <textarea 
+                    name="description" 
+                    placeholder="Describe about it..." 
+                    required 
+                    class="blog-description"
+                ></textarea>
+                <div class="button-container">
+                    <button type="submit" class="post-button">Post</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="quote-border">
+
+    <div class="quote-container" id="quote-container">
+        <h2 id="quote-text">"<%= quote.text %>"</h2>
+        <p id="quote-author">- <%= quote.author %></p>
+    </div></div>
+
+    <script>
+        // Function to fetch and update the quote
+        async function updateQuote() {
+            try {
+                const quoteContainer = document.getElementById('quote-container');
+
+                // First remove fade-in class, reset opacity and visibility
+                quoteContainer.classList.remove('fade-in');
+                quoteContainer.classList.add('fade-out');
+
+                // Wait for the fade-out animation to complete (1 second)
+                setTimeout(async () => {
+                    // Fetch the new quote
+                    const response = await fetch('/api/quote');
+                    const quote = await response.json();
+
+                    // Update the quote text and author
+                    document.getElementById('quote-text').textContent = `"${quote.text}"`;
+                    document.getElementById('quote-author').textContent = `- ${quote.author}`;
+
+                    // Remove fade-out class, and reapply fade-in class to trigger the fade-in animation
+                    quoteContainer.classList.remove('fade-out');
+                    quoteContainer.classList.add('fade-in');
+                }, 1000); // Wait 1 second before updating the quote (to match the fade-out time)
+            } catch (err) {
+                console.error("Error fetching quote:", err);
+                const quoteContainer = document.getElementById('quote-container');
+
+                // Handle error case by showing a default error message
+                quoteContainer.classList.remove('fade-in');
+                quoteContainer.classList.add('fade-out');
+                setTimeout(() => {
+                    document.getElementById('quote-text').textContent = `"An error occurred fetching the quote."`;
+                    document.getElementById('quote-author').textContent = `- Unknown`;
+                    quoteContainer.classList.remove('fade-out');
+                    quoteContainer.classList.add('fade-in');
+                }, 1000);
+            }
+        }
+
+        // Refresh quote every 6 seconds (because fade out takes 1 second)
+        setInterval(updateQuote, 8000);
+
+        // Update the quote immediately on page load
+        updateQuote();
+    </script>
+</body>
+</html>

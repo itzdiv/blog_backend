@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font linking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&family=Reenie+Beanie&family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&display=swap" rel="stylesheet">
+    <!-- style css files -->
+    <link rel="stylesheet" href="style.css">
+    <title>Blog</title>
+</head>
+<body>
+    <!-- this will be the navigation bar -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="#">
+                <img src="ninlg.svg" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-items">
+            <div><a href="#">Home</a></div>
+            <div><a href="/compose">Write</a></div>
+            <div><a href="#blogs">Blogs</a></div>
+            <div><a href="https://divyanshmalani.com" target="_blank">Portfolio</a></div>
+        </div>
+    </div>
+    
+
+    <!-- site logo design -->
+     
+    <div class="container">
+        <div class="top-text">
+            <span>From: divyanshmalani.com</span>
+            <span>To: You</span>
+        </div>
+        <div class="main-text">BLOG<BR>NINJA</div>
+        <div class="arrow">⬆⬆</div>
+        <div class="rotated-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta maiores obcaecati, <u>comme tu te appele</u> , je suis tone pere , tu es mon chien, nos ami quo dolores itaque assumenda perspiciatis! Expedita provident, unde consequatur non minima <i><b>architecto necessitatibus minus</b></i> dignissimos tempore praesentium<b> voluptas fugiat non minima </b>architecto necessitatibus minus dignissimos tempore praesentium voluptas <b>fugiat ringar shringar tangar </b>sta.Soluta maiores obcaecati, quo dolores itaque assumenda perspiciatis! Expedita provident, <u><b>unde singulture as.</b></u>
+        </div>
+        <div class="free-delivery">Inspire Action</div>
+    </div>
+    
+
+  
+
+<section id="blogs">
+    <div class="blogs-header">
+        <h2>Posted Blogs</h2>
+    </div>
+    <div class="blogs-container">
+        <% if (blogs.length === 0) { %>
+            <p>No blogs yet. Start posting!</p>
+        <% } else { %>
+            <% blogs.forEach((blog, index) => { %>
+                <div class="blog-entry">
+                    <a href="/blog/<%= index %>" target="_blank" class="blog-link">
+                        <h3><%= blog.title %></h3>
+                    </a>
+                    <!-- Action buttons for delete and edit -->
+                    <div class="action-buttons">
+                        <!-- Delete Icon -->
+                        <form action="/delete-blog/<%= index %>" method="POST" class="action-form">
+                            <button type="submit" class="icon-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M3 6l3 12a2 2 0 002 1h8a2 2 0 002-1l3-12H3zm7 9H8v-5h2v5zm4 0h-2v-5h2v5zm5-13h-3.5l-1-1h-6l-1 1H4v2h16V2z" fill="black" />
+                                </svg>
+                            </button>
+                        </form>
+                        <!-- Edit Icon -->
+                        <a href="/edit-blog/<%= index %>" class="icon-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M14.06 3.94l6 6-10 10H4v-6l10-10zM4 21h16v2H4v-2z" fill="black" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</section>
+    
+    
+    <%# Footer goes here%>
+
+    <footer>
+        <p>&copy; Divyansh Malani <%= new Date().getFullYear() %></p>
+    </footer>
+    
+      
+      
+    
+</body>
+</html>

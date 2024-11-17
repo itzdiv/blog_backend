@@ -1,0 +1,81 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;  /* White background for the page */
+    color: #000;  /* Black text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Title styling */
+h1 {
+    font-size: 36px;
+    color: #000;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #fff;  /* White background for title */
+    border: 3px solid #000;  /* Black outline */
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Description styling */
+p {
+    font-size: 18px;
+    color: #333;  /* Slightly lighter black for the text */
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;  /* White background for description */
+    border: 3px solid #000;  /* Black outline */
+    border-radius: 8px;
+    min-height: 600px;  /* Minimum height for the description */
+    width: 800px;  /* Exact width for description to match the title */
+}
+
+/* Back to Homepage link */
+a {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20px;  /* Increased margin between content and button */
+    margin-bottom: 50px;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #000;
+    color: #fff;  /* White text on hover */
+}
+
+/* Footer styling */
+
+footer {
+    margin-top: auto;  /* Push footer to the bottom */
+    text-align: right;  /* Align the footer text to center */
+    
+    padding: 20px;
+    width: 100%;
+    border-top: none;  /* Remove the border around the footer */
+    color: #000;
+}
+
+footer span{
+    margin: top 10px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&family=Reenie+Beanie&family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/edit-blog.css">
+    <title>Edit Blog</title>
+</head>
+<body>
+  <div>
+  <h1 id="edit-blog-headline">Editing Mode</h1>
+</div>
+    <div class="blog-post">
+        <form action="/edit-blog/<%= id %>" method="POST">
+          <input 
+            type="text" 
+            name="title" 
+            value="<%= title %>" 
+            required 
+            class="blog-title" 
+          />
+          <textarea 
+            name="description" 
+            required 
+            class="blog-description"
+          ><%= description %></textarea>
+          <div class="button-container">
+            <button type="submit" class="post-button">Update</button>
+          </div>
+        </form>
+    </div>
+</body>
+</html>

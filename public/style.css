@@ -1,0 +1,426 @@
+/* Center the Blog Post Container */
+.blog-post {
+    
+    width: 50%; /* Adjust width as needed */
+    margin: 50px auto; /* Centers the div horizontally */
+    padding: 20px;
+    border: 2px solid #000; /* Black border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between elements */
+  }
+  
+  /* Title Input */
+  blog-post {
+    width: 50%; /* Adjust width as needed */
+    margin: 50px auto; /* Centers the div horizontally */
+    padding: 20px;
+    border: 2px solid #000; /* Black border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between elements */
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Title Input */
+.blog-title {
+    width: 100%; /* Full width of the container */
+    padding: 10px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Inner shadow */
+    box-sizing: border-box; /* Includes padding in width */
+}
+
+  
+  .blog-title::placeholder {
+    color: #777; /* Hint text color */
+  }
+  
+  /* Description Textarea */
+  .blog-description {
+    width: 100%; /* Full width of the container */
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Inner shadow */
+    resize: none; /* Disable resizing */
+    box-sizing: border-box; /* Includes padding in width */
+}  
+  .blog-description::placeholder {
+    color: #777; /* Hint text color */
+  }
+  
+  /* Button Container */
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns button to the right */
+  }
+  
+  /* Post Button */
+  .post-button {
+    padding: 10px 20px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    background-color: #000; /* Black button */
+    color: #fff; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .post-button:hover {
+    background-color: #333; /* Darker black on hover */
+    transform: scale(1.05); /* Slight grow effect */
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .blog-post {
+      width: 90%; /* Adjust width for smaller screens */
+    }
+  }
+  
+  /* blog header */
+  .blogs-header {
+    background-color: black; /* Black background for the header */
+    color: white; /* White text color for contrast */
+    text-align: center; /* Center the text */
+    padding: 10px 0; /* Add vertical spacing */
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    width: 100%; /* Ensure it spans the entire width */
+    margin-bottom: 15px; /* Add spacing below the header */
+}
+
+  /* Blog Container */
+.blogs-container {
+    width: 80%; /* Takes 80% of the width */
+    margin: 20px auto; /* Center the container */
+    padding: 20px;
+    border: 2px solid #000; /* Black border */
+    border-radius: 10px; /* Curved edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background */
+  }
+  
+  /* Blog Entry */
+  .blog-entry {
+    margin-bottom: 20px; /* Add space between each blog */
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; /* Add a separator for clarity */
+  }
+  
+  .blog-entry:last-child {
+    border-bottom: none; /* Remove border for the last entry */
+  }
+  
+  /* Blog Link */
+  .blog-link {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Black text */
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .blog-link:hover {
+    color: #007BFF; /* Blue text on hover */
+  }
+
+
+  /* footer thingies */
+  footer {
+    text-align: right;  /* Align text to the right */
+    padding: 10px 20px; /* Add padding */
+    background-color: transparent; /* Make background transparent */
+    border-top: 2px solid black; /* Add a black top border */
+    color: black; /* Set text color to black */
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* navigation bar code */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    margin-left: 20px; /* Add spacing to the left */
+}
+
+.navbar .logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+.navbar .logo img:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+.navbar .nav-items {
+    flex: 1; /* Ensures the nav items are centered */
+    display: flex;
+    justify-content: center; /* Centers the nav items horizontally */
+    gap: 30px; /* Adds spacing between items */
+}
+
+.navbar .nav-items div {
+    text-align: center;
+    transition: transform 0.3s ease, border 0.3s ease;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.navbar .nav-items div:hover {
+    transform: scale(1.7);
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
+.navbar .nav-items div a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+
+
+/* Add space below the navbar */
+body {
+    margin-top: 60px; /* Ensures spacing below the navbar */
+}
+
+/* logo css */
+.reenie-beanie-regular {
+    font-family: "Reenie Beanie", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.anton-sc-regular {
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.water-brush-regular {
+    font-family: "Water Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    position: relative; /* Natural flow instead of absolute positioning */
+    
+    margin: 100px auto; /* Adds 100px space above and below; centers horizontally */
+    margin-top: 180px ;
+    width: 880px;
+    height: 480px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Optional styling */
+}
+
+.top-text {
+    position: absolute;
+    top: 26px;
+    left: 6%;
+    background-color: rgba(255, 255, 0, 0.3);
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 32px;
+    padding: 16px;
+    z-index: 2;
+    line-height: 1.5;
+}
+
+.top-text span {
+    display: block;
+    transform: translateY(-19px);
+}
+
+.main-text {
+    position: absolute;
+    top: 24%;
+    left: 20%;
+    font-size: 145px;
+    font-weight: 400;
+    font-style: bold;
+    text-align: center;
+    font-family: "Anton SC", sans-serif;
+    color: transparent;
+    background: url('https://i.pinimg.com/736x/df/58/30/df5830f4a1030ab6335afaeaa861edba.jpg') no-repeat center;
+    background-size: cover;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    z-index: 3;
+    line-height: 145px;
+    letter-spacing: 19px;
+}
+
+.arrow {
+    position: absolute;
+    bottom: 40%;
+    left: 5%;
+    font-size: 80px;
+    color: black;
+    z-index: 2;
+    transform: rotate(45deg);
+}
+
+.rotated-text {
+    position: absolute;
+    top: 46%;
+    right: 10%;
+    width: 416px;
+    transform: rotate(-90deg);
+    text-align: justify;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    line-height: 1.5;
+}
+
+.free-delivery {
+    position: absolute;
+    top: 90%;
+    right: 20%;
+    font-family: 'Water Brush', cursive;
+    font-size: 64px;
+    color: black;
+    z-index: 5;
+    font-style: italic;
+    transform: rotate(-5.5deg);
+}
+
+/* icon for blogs color-coding */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 5px; /* Spacing below the blog title */
+}
+
+.icon-button {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px; /* Curved border */
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: black;
+    transform: scale(1.1);
+}
+
+.icon-button svg path {
+    fill: black; /* Default color */
+}
+
+.icon-button:hover svg path {
+    fill: white; /* Invert on hover */
+}
+
+/* Spacing the composing title */
+
+
+#compose-tagline{
+
+
+        position: relative;
+        font-family: 'Water Brush', cursive;
+        font-size: 70px;
+        color: black;
+        margin-top: 70px;
+        margin-bottom: 100px;
+        
+        font-style: italic;
+        transform: rotate(-5.5deg);
+    
+}
+
+/* Compose section ejs */
+/* Quote Fade In and Out animation */
+        .quote-border{
+            padding: 2px;
+            border: 5px solid black;
+            position: fixed;   /* This fixes it in place */
+            bottom: 0;         /* Aligns it to the bottom of the page */
+            width: 100%;       /* Ensure it spans the full width */
+            text-align: center; /* Optional: Center the content */
+
+            
+        }
+        .quote-container {
+            padding: 20px;
+            
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-in-out, visibility 0s 1s; /* Fade transition */
+        }
+
+        /* Fade-out class */
+        .fade-out {
+            opacity: 0; /* Makes the quote disappear */
+            visibility: hidden; /* Hides the quote element */
+            transition: opacity 0.8s ease-in-out, visibility 0s 0s; /* Quick visibility change */
+        }
+
+        /* Fade-in class */
+        .fade-in {
+            opacity: 1; /* Makes the quote appear */
+            visibility: visible; /* Makes the quote visible */
+            transition: opacity 0.8s ease-in-out, visibility 0s 0s; /* Ensures visibility change is instantaneous */
+        }
+
+
+
+
+  
