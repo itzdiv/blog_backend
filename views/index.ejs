@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Manrope:wght@200..800&family=Qwigley&display=swap" rel="stylesheet">
     <!-- style css files -->
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
     <title>Blog</title>
 </head>
 <body>
@@ -29,7 +31,7 @@
             <div><a href="#">Home</a></div>
             <div><a href="/compose">Write</a></div>
             <div><a href="#blogs">Blogs</a></div>
-            <div><a href="https://divyanshmalani.com" target="_blank">Portfolio</a></div>
+            <div><a href="/documentation" target="_blank">API Docs</a></div>
         </div>
     </div>
     
@@ -52,41 +54,42 @@
 
   
 
-<section id="blogs">
-    <div class="blogs-header">
-        <h2>Posted Blogs</h2>
-    </div>
-    <div class="blogs-container">
-        <% if (blogs.length === 0) { %>
-            <p>No blogs yet. Start posting!</p>
-        <% } else { %>
-            <% blogs.forEach((blog, index) => { %>
-                <div class="blog-entry">
-                    <a href="/blog/<%= index %>" target="_blank" class="blog-link">
-                        <h3><%= blog.title %></h3>
-                    </a>
-                    <!-- Action buttons for delete and edit -->
-                    <div class="action-buttons">
-                        <!-- Delete Icon -->
-                        <form action="/delete-blog/<%= index %>" method="POST" class="action-form">
-                            <button type="submit" class="icon-button" id="delete-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                                    <path d="M3 6l3 12a2 2 0 002 1h8a2 2 0 002-1l3-12H3zm7 9H8v-5h2v5zm4 0h-2v-5h2v5zm5-13h-3.5l-1-1h-6l-1 1H4v2h16V2z" fill="black" />
-                                </svg>
-                            </button>
-                        </form>
-                        <!-- Edit Icon -->
-                        <a href="/edit-blog/<%= index %>" class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                                <path d="M14.06 3.94l6 6-10 10H4v-6l10-10zM4 21h16v2H4v-2z" fill="black" />
-                            </svg>
+    <section id="blogs">
+        <div class="blogs-header">
+            <h2>Posted Blogs</h2>
+        </div>
+        <div class="blogs-container">
+            <% if (blogs.length === 0) { %>
+                <p>No blogs yet. Start posting!</p>
+            <% } else { %>
+                <% blogs.forEach((blog) => { %>
+                    <div class="blog-entry">
+                        <a href="/blog/<%= blog.id %>" target="_blank" class="blog-link">
+                            <h3><%= blog.title %></h3>
                         </a>
+                        <!-- Action buttons for delete and edit -->
+                        <div class="action-buttons">
+                            <!-- Delete Icon -->
+                            <form action="/delete-blog/<%= blog.id %>" method="POST" class="action-form">
+                                <button type="submit" class="icon-button" id="delete-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M3 6l3 12a2 2 0 002 1h8a2 2 0 002-1l3-12H3zm7 9H8v-5h2v5zm4 0h-2v-5h2v5zm5-13h-3.5l-1-1h-6l-1 1H4v2h16V2z" fill="black" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <!-- Edit Icon -->
+                            <a href="/edit-blog/<%= blog.id %>" class="icon-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M14.06 3.94l6 6-10 10H4v-6l10-10zM4 21h16v2H4v-2z" fill="black" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            <% }); %>
-        <% } %>
-    </div>
-</section>
+                <% }); %>
+            <% } %>
+        </div>
+    </section>
+    
     
     
     <%# Footer goes here%>

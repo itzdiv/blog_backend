@@ -1,108 +1,150 @@
 import express from "express";
 import bodyParser from "body-parser";
-import quotesy from 'quotesy';   
+import quotesy from 'quotesy';
+import pkg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
+const { Pool } = pkg;
 
+const app = express();
+const port = 3001;
 
-
-
-const app= express();
-const port= 3000;
+// PostgreSQL setup
+const pool = new Pool({
+    user: process.env.PG_USER,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DATABASE,
+    password: process.env.PG_PASSWORD,
+    port: process.env.PG_PORT,
+  });
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
 
-app.listen(port,()=>{
-    console.log(`Server is running at port : ${port}`);
-})
-
-app.get("/",(req,res) =>{
-    res.render("index.ejs",{
-        blogs: blogs,
-    });
+// Home route
+app.get("/", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT * FROM blog_posts ORDER BY id DESC");
+        res.render("index.ejs", {
+            blogs: result.rows,
+        });
+    } catch (err) {
+        console.error(err);
+        res.send("Error retrieving blogs");
+    }
 });
 
-// Array to store blogs
-const blogs = [];
+//documentation for the API route
+app.get("/documentation", (req, res) => {
+    res.render("documentation.ejs");
+});
 
-//to get compose.ejs
+// Compose route
 app.get("/compose", async (req, res) => {
     try {
-        const quote = await quotesy.random();  // Fetch a random quote
-        res.render("compose.ejs", {
-            quote: quote // Pass the quote to the compose.ejs page
-        });
+        const quote = await quotesy.random();
+        res.render("compose.ejs", { quote });
     } catch (err) {
         console.error(err);
         res.render("compose.ejs", {
             quote: { text: "An error occurred fetching the quote.", author: "Unknown" }
         });
     }
-
 });
 
-//constantly update compose.ejs quotes
+// API route for constant quote updates
 app.get("/api/quote", async (req, res) => {
     try {
-        const quote = await quotesy.random(); // Fetch a random quote
-        res.json(quote); // Return the quote as JSON
+        const quote = await quotesy.random();
+        res.json(quote);
     } catch (err) {
         console.error(err);
         res.status(500).json({ text: "Error fetching quote.", author: "Unknown" });
     }
 });
 
-
-// Post-Blog Route
-app.post("/post-blog", (req, res) => {
-    const { title, description } = req.body; // Extract title and description
-    blogs.push({ title, description }); // Store blog data in the array
-    res.redirect("/"); // Redirect to homepage
+// Post a new blog
+app.post("/post-blog", async (req, res) => {
+    const { title, description } = req.body;
+    try {
+        await pool.query("INSERT INTO blog_posts (title, description) VALUES ($1, $2)", [title, description]);
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.send("Error posting blog");
+    }
 });
 
-app.get("/blog/:id", (req, res) => {
+// View single blog
+app.get("/blog/:id", async (req, res) => {
     const blogId = req.params.id;
-    const blog = blogs[blogId];
-    if (blog) {
-        res.render("blog.ejs", {
-            title: blog.title,
-            description: blog.description,
-        });
-    } else {
-        res.status(404).send("Blog not found");
+    try {
+        const result = await pool.query("SELECT * FROM blog_posts WHERE id = $1", [blogId]);
+        const blog = result.rows[0];
+        if (blog) {
+            res.render("blog.ejs", {
+                title: blog.title,
+                description: blog.description,
+            });
+        } else {
+            res.status(404).send("Blog not found");
+        }
+    } catch (err) {
+        console.error(err);
+        res.send("Error retrieving blog");
     }
 });
 
-//for deleting and updating the blogs
-app.post("/delete-blog/:id", (req, res) => {
+// Delete blog
+app.post("/delete-blog/:id", async (req, res) => {
     const blogId = parseInt(req.params.id, 10);
-    if (blogs[blogId]) {
-        blogs.splice(blogId, 1); // Remove the blog from the array
+    try {
+        await pool.query("DELETE FROM blog_posts WHERE id = $1", [blogId]);
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.send("Error deleting blog");
     }
-    res.redirect("/"); // Redirect to homepage
 });
 
-// Route to render the edit blog form
-app.get("/edit-blog/:id", (req, res) => {
+// Edit form route
+app.get("/edit-blog/:id", async (req, res) => {
     const blogId = parseInt(req.params.id, 10);
-    const blog = blogs[blogId];
-    if (blog) {
-        res.render("edit-blog.ejs", {
-            id: blogId,
-            title: blog.title,
-            description: blog.description,
-        });
-    } else {
-        res.status(404).send("Blog not found");
+    try {
+        const result = await pool.query("SELECT * FROM blog_posts WHERE id = $1", [blogId]);
+        const blog = result.rows[0];
+        if (blog) {
+            res.render("edit-blog.ejs", {
+                id: blog.id,
+                title: blog.title,
+                description: blog.description,
+            });
+        } else {
+            res.status(404).send("Blog not found");
+        }
+    } catch (err) {
+        console.error(err);
+        res.send("Error retrieving blog");
     }
 });
 
-// Route to handle blog update
-app.post("/edit-blog/:id", (req, res) => {
+// Update blog
+app.post("/edit-blog/:id", async (req, res) => {
     const blogId = parseInt(req.params.id, 10);
     const { title, description } = req.body;
-    if (blogs[blogId]) {
-        blogs[blogId] = { title, description }; // Update the blog
+    try {
+        await pool.query(
+            "UPDATE blog_posts SET title = $1, description = $2 WHERE id = $3",
+            [title, description, blogId]
+        );
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.send("Error updating blog");
     }
-    res.redirect("/"); // Redirect to homepage
 });
 
+app.listen(port, () => {
+    console.log(`Server is running at port: ${port}`);
+});

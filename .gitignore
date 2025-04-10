@@ -1,0 +1,40 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# dotenv files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor-specific
+.vscode/
+.idea/
+
+# Coverage / testing
+coverage/
+*.lcov
+
+# Optional build folders
+dist/
+build/
+
+# Optional database dumps
+*.sql
+*.sqlite
+
+# EJS cache (if any used)
+*.ejs~
+
+# Postman or API test results
+*.postman_collection.json

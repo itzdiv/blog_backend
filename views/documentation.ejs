@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog API Documentation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #f5f5f5;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+    }
+    .endpoint {
+      margin-top: 2rem;
+      border-left: 3px solid #888;
+      padding-left: 1rem;
+    }
+    .method {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-right: 1rem;
+    }
+    .get    { color: #4cd964; }
+    .post   { color: #0a84ff; }
+    .put    { color: #ffd60a; }
+    .delete { color: #ff453a; }
+    .desc   { margin: 0.2rem 0 0.6rem 0; color: #bbb; }
+    code {
+      background-color: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .json-example {
+      background: #1c1c1c;
+      border-left: 3px solid #333;
+      padding: 0.5rem 1rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #cfcfcf;
+      margin: 0.3rem 0 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    footer {
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <h1>📘 Blog API Documentation</h1>
+  <p>All routes return responses in <strong>JSON</strong> format.</p>
+
+  <div class="endpoint">
+    <span class="method get">GET</span> /api/posts  
+    <div class="desc">Fetch all blog posts.</div>
+    <div class="json-example">[
+  { "id": 1, "title": "First Post", "description": "Hello World" },
+  { "id": 2, "title": "Second Post", "description": "Another one" }
+]</div>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span> /api/posts/:id  
+    <div class="desc">Fetch a single blog post by its ID.</div>
+    <div class="json-example">{
+  "id": 1,
+  "title": "First Post",
+  "description": "Hello World"
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <span class="method post">POST</span> /api/posts  
+    <div class="desc">Create a new blog post.<br/>Body: <code>{ "title": "...", "description": "..." }</code></div>
+    <div class="json-example">{
+  "id": 3,
+  "title": "New Post",
+  "description": "Created via API"
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span> /api/posts/:id  
+    <div class="desc">Update an existing blog post by ID.<br/>Body: <code>{ "title": "...", "description": "..." }</code></div>
+    <div class="json-example">{
+  "id": 3,
+  "title": "Updated Title",
+  "description": "Updated content"
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <span class="method delete">DELETE</span> /api/posts/:id  
+    <div class="desc">Delete a blog post by ID.</div>
+    <div class="json-example">{
+  "message": "Blog deleted successfully",
+  "deleted": {
+    "id": 3,
+    "title": "Old Title",
+    "description": "Old content"
+  }
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span> /api/quote  
+    <div class="desc">Returns a random quote (via <code>quotesy</code>).</div>
+    <div class="json-example">{
+  "text": "Talk is cheap. Show me the code.",
+  "author": "Linus Torvalds"
+}</div>
+  </div>
+
+  <footer>🖤 Built with Express, PostgreSQL & a touch of minimalism.</footer>
+</body>
+</html>
